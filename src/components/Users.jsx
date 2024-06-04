@@ -52,7 +52,7 @@ function User({ user }) {
           </div>
         </div>
         <div className='flex flex-col justify-center h-full'>
-          <div>{user.firstName} (user.lastName)</div>
+          <div>{user.firstName} {user.lastName}</div>
         </div>
       </div>
       <div className='flex flex-col justify-center h-full'>
