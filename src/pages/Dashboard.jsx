@@ -4,13 +4,13 @@ import { Users } from '../components/Users'
 
 export const Dashboard = () => {
   return (
-    <div className='max-w-[92rem] mx-auto my-44'>
+    <div className=''>
       <div>
         <Appbar />
       </div>
-      <div className='px-4 mt-4'>
+      <div className='px-8 mt-10'>
         <Balance />
-        <Users />
+        <Users  />
       </div>
     </div>
   )

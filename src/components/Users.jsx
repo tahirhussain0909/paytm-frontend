@@ -1,32 +1,31 @@
-import { useState } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 import Button from '../components/Button'
 
 export const Users = () => {
-  const [users, setUsers] = useState([
-    {
-      firstName: 'firstName',
-      lastName: 'lastName',
-      _id: 1,
-    },
-    {
-      firstName: 'firstName',
-      lastName: 'lastName',
-      _id: 1,
-    },
-    {
-      firstName: 'firstName',
-      lastName: 'lastName',
-      _id: 1,
-    },
-  ])
+  const [users, setUsers] = useState([])
+  const [filter, setFilter] = useState('')
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://paytm-backend-five.vercel.app/api/v1/user/bulk?filter=${filter}`
+      )
+      .then((response) => {
+        setUsers(response.data.users)
+      })
+  }, [filter])
 
   return (
     <>
       <div className='font-bold mt-6 text-lg'>Users</div>
       <div className='my-2'>
         <input
+          onChange={(e) => {
+            setFilter(e.target.value)
+          }}
           type='text'
           placeholder='Search users...'
           className='w-full px-2 py-1 border rounded border-slate-200'
@@ -57,7 +56,7 @@ function User({ user }) {
         </div>
       </div>
       <div className='flex flex-col justify-center h-full'>
-        <Button label={'Send Money'} onClick={() => navigate('/send')} />
+        <Button label={'Send Money'} onClick={() => navigate(`/send?id=${user._id}&name=${user.firstName}`)} />
       </div>
     </div>
   )
