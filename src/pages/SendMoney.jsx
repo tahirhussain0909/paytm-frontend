@@ -36,7 +36,7 @@ export const SendMoney = () => {
             <button
               onClick={async () => {
                 await axios.post(
-                  'https://paytm-backend-five.vercel.app/api/v1/account/transfer',
+                  `${process.env.BACKEND_URL}/api/v1/account/transfer`,
                   {
                     amount: amount,
                     to: id,
@@ -45,7 +45,7 @@ export const SendMoney = () => {
                     headers: {
                       Authorization: localStorage.getItem('token'),
                     },
-                  }
+                  },
                 )
               }}
               className='justify-center mt-4 rounded-md text-sm font-medium ring-offset-background transition-colors h-10 px-4 py-2 w-full bg-green-500 text-white'

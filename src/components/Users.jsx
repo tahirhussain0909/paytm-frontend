@@ -10,9 +10,7 @@ export const Users = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://paytm-backend-five.vercel.app/api/v1/user/bulk?filter=${filter}`
-      )
+      .get(`${process.env.BACKEND_URL}/api/v1/user/bulk?filter=${filter}`)
       .then((response) => {
         setUsers(response.data.users)
       })
@@ -56,7 +54,12 @@ function User({ user }) {
         </div>
       </div>
       <div className='flex flex-col justify-center h-full'>
-        <Button label={'Send Money'} onClick={() => navigate(`/send?id=${user._id}&name=${user.firstName}`)} />
+        <Button
+          label={'Send Money'}
+          onClick={() =>
+            navigate(`/send?id=${user._id}&name=${user.firstName}`)
+          }
+        />
       </div>
     </div>
   )

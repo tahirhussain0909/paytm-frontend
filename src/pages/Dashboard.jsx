@@ -10,7 +10,7 @@ export const Dashboard = () => {
       </div>
       <div className='px-8 mt-10'>
         <Balance />
-        <Users  />
+        <Users />
       </div>
     </div>
   )
